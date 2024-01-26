@@ -1,0 +1,9 @@
+name: BurgerCore
+version: 1.0
+author: Kevin_031
+main: me.Kevin_031.BurgerCore.Main
+description: This is a collection of earlier and upgraded work of Kevin_031. It functions as a core plugin for the different Burgerservers.
+
+commands:
+  currenttime:
+    description: Returns the current time.
