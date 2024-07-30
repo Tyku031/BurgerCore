@@ -1,12 +1,10 @@
-package me.Kevin_031.BurgerCore.Ranks;
+package me.Kevin_031.BurgerCore.Grants;
 
 import org.bukkit.entity.Player;
 
 import me.Kevin_031.BurgerCore.Utilities.Utilities;
 
 public class RanksPrefixHandler {
-
-	RanksPlayerHandler rph = new RanksPlayerHandler();
 	
 	String pDEFAULT = "&7[Default] &f";
 	String pVIP = "&a[Vip] &f";
@@ -22,6 +20,7 @@ public class RanksPrefixHandler {
 	String pMANAGER = "&c&l[Manager] &r&f";
 	String pOWNER = "&6&l[Owner] &r&f";
 	
+	/*
 	public void setupPrefix(Player p) {
 		Integer highestRank = rph.getHighestRank(p);
 		String prefix = null;
@@ -56,4 +55,5 @@ public class RanksPrefixHandler {
 		p.setDisplayName(Utilities.chat(prefix + p.getName()));
 		p.setPlayerListName(Utilities.chat(prefix + "&7" + p.getName()));
 	}
+	*/
 }

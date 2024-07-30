@@ -1,4 +1,4 @@
-package me.Kevin_031.BurgerCore.Ranks;
+package me.Kevin_031.BurgerCore.Grants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,12 +9,15 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import me.Kevin_031.BurgerCore.Utilities.Utilities;
+import me.Kevin_031.BurgerCore.Main;
+import me.Kevin_031.BurgerCore.Core.GrantStruct;
+import me.Kevin_031.BurgerCore.Core.PlayerDataFileManager;
 
-public class RanksPlayerHandler {
+public class GrantsManager {
 
-	RanksFileHandler rfh = new RanksFileHandler();
+	Main plugin;
 	
+	/*
 	int OWNER = 100;
 	int MANAGER = 90;
 	int DEVELOPER = 85;
@@ -30,8 +33,24 @@ public class RanksPlayerHandler {
 	int DEFAULT = 0;
 	
 	Integer[] ranks = {DEFAULT, VIP, ELITE, ULTRA, LEGEND, MEDIA, BUILDER, TRIALMOD, MODERATOR, ADMIN, DEVELOPER, MANAGER, OWNER};
+	*/
 	
-	public void SetupPlayer(Player p) {
+	public GrantsManager(Main plugin) {
+		this.plugin = plugin;
+	}
+	
+	public void addGrant(OfflinePlayer p, GrantStruct grant) {
+		YamlConfiguration yml = plugin.pdfm.getPlayerData(p);
+		Integer numberOfGrants = yml.getInt("NumberOfGrants");
+		GrantStruct a = yml.getObject("Grant0", GrantStruct.class);
+		
+		return;
+	}
+	
+	
+	
+	/*
+	public void setupPlayer(Player p) {
 		File f = new File("plugins/BurgerCore/PlayerData/" + p.getUniqueId() + ".yml");
 		if (!f.exists()) {
 			try {
@@ -96,7 +115,7 @@ public class RanksPlayerHandler {
 	}
 	
 	public ArrayList<Integer> getRanks(OfflinePlayer p) {
-		YamlConfiguration yml = rfh.getPlayerData(p);
+		YamlConfiguration yml = pdfm.getPlayerData(p);
 		if (yml == null) return null;
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for (int i = 0; i < ranks.length; i++) {
@@ -129,4 +148,5 @@ public class RanksPlayerHandler {
 			list.remove(i);
 		}
 	}
+	*/
 }
