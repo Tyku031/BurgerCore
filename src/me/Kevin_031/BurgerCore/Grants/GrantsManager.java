@@ -1,53 +1,155 @@
 package me.Kevin_031.BurgerCore.Grants;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.io.File;
-import java.io.IOException;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 
 import me.Kevin_031.BurgerCore.Main;
 import me.Kevin_031.BurgerCore.Core.GrantStruct;
-import me.Kevin_031.BurgerCore.Core.PlayerDataFileManager;
+import me.Kevin_031.BurgerCore.Utilities.Utilities;
 
 public class GrantsManager {
 
 	Main plugin;
 	
-	/*
-	int OWNER = 100;
-	int MANAGER = 90;
-	int DEVELOPER = 85;
-	int ADMIN = 80;
-	int MODERATOR = 70;
-	int TRIALMOD = 65;
-	int BUILDER = 60;
-	int MEDIA = 50;
-	int LEGEND = 40;
-	int ULTRA = 30;
-	int ELITE = 20;
-	int VIP = 10;
-	int DEFAULT = 0;
-	
-	Integer[] ranks = {DEFAULT, VIP, ELITE, ULTRA, LEGEND, MEDIA, BUILDER, TRIALMOD, MODERATOR, ADMIN, DEVELOPER, MANAGER, OWNER};
-	*/
-	
 	public GrantsManager(Main plugin) {
 		this.plugin = plugin;
 	}
 	
-	public void addGrant(OfflinePlayer p, GrantStruct grant) {
-		YamlConfiguration yml = plugin.pdfm.getPlayerData(p);
-		Integer numberOfGrants = yml.getInt("NumberOfGrants");
-		GrantStruct a = yml.getObject("Grant0", GrantStruct.class);
-		
-		return;
+	public int getNumberOfGrants(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		return yml.getInt("NumberOfGrants");
 	}
 	
+	public int getNumberOfActiveGrants(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		return yml.getInt("NumberOfActiveGrants");
+	}
 	
+	public int getNumberOfExpiredGrants(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		return yml.getInt("NumberOfGrants") - yml.getInt("NumberOfActiveGrants");
+	}
+	
+	public GrantStruct getGrant(OfflinePlayer p, int grantNumber) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		if (yml.getInt("NumberOfGrants") <= grantNumber)
+			return null;
+		return yml.getObject("Grant" + grantNumber, GrantStruct.class);
+	}
+	
+	public ArrayList<GrantStruct> getAllGrants(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		int numberOfGrants = yml.getInt("NumberOfGrants");
+		ArrayList<GrantStruct> grants = new ArrayList<GrantStruct>();
+		for (int i = 0; i < numberOfGrants; i++) {
+			grants.add(yml.getObject("Grant" + i, GrantStruct.class));
+		}
+		return grants;
+	}
+	
+	public ArrayList<GrantStruct> getAllActiveGrants(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		int numberOfGrants = yml.getInt("NumberOfGrants");
+		ArrayList<GrantStruct> grants = new ArrayList<GrantStruct>();
+		for (int i = 0; i < numberOfGrants; i++) {
+			GrantStruct grant = yml.getObject("Grant" + i, GrantStruct.class);
+			if (grant.EXPIRES_ON.after(Utilities.date(Utilities.calendar())));
+				grants.add(grant);
+		}
+		return grants;
+	}
+	
+	public ArrayList<GrantStruct> getAllExpiredGrants(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		int numberOfGrants = yml.getInt("NumberOfGrants");
+		ArrayList<GrantStruct> grants = new ArrayList<GrantStruct>();
+		for (int i = 0; i < numberOfGrants; i++) {
+			GrantStruct grant = yml.getObject("Grant" + i, GrantStruct.class);
+			if (grant.EXPIRES_ON.before(Utilities.date(Utilities.calendar())));
+				grants.add(grant);
+		}
+		return grants;
+	}
+	
+	public GrantStruct getHighestActiveRank(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		int numberOfGrants = yml.getInt("NumberOfGrants");
+		GrantStruct highestGrant = null;
+		for (int i = 0; i < numberOfGrants; i++) {
+			GrantStruct grant = yml.getObject("Grant" + i, GrantStruct.class);
+			if (highestGrant != null && grant.GRANT.compareTo(highestGrant.GRANT) > 0)
+				highestGrant = grant;
+			else
+				highestGrant = grant;
+		}
+		return highestGrant;
+	}
+	
+	public ArrayList<GrantStruct> getAllRanks(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		int numberOfGrants = yml.getInt("NumberOfGrants");
+		ArrayList<GrantStruct> grants = new ArrayList<GrantStruct>();
+		for (int i = 0; i < numberOfGrants; i++) {
+			GrantStruct grant = yml.getObject("Grant" + i, GrantStruct.class);
+			if (grant.GRANT.order >= 50 && grant.GRANT.order < 1000)
+				grants.add(grant);
+		}
+		return grants;
+	}
+	
+	public ArrayList<GrantStruct> getAllActiveRanks(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		int numberOfGrants = yml.getInt("NumberOfGrants");
+		ArrayList<GrantStruct> grants = new ArrayList<GrantStruct>();
+		for (int i = 0; i < numberOfGrants; i++) {
+			GrantStruct grant = yml.getObject("Grant" + i, GrantStruct.class);
+			if (grant.GRANT.order >= 50 && grant.GRANT.order < 1000 && grant.EXPIRES_ON.after(Utilities.date(Utilities.calendar())));
+				grants.add(grant);
+		}
+		return grants;
+	}
+	
+	public ArrayList<GrantStruct> getAllExpiredRanks(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		int numberOfGrants = yml.getInt("NumberOfGrants");
+		ArrayList<GrantStruct> grants = new ArrayList<GrantStruct>();
+		for (int i = 0; i < numberOfGrants; i++) {
+			GrantStruct grant = yml.getObject("Grant" + i, GrantStruct.class);
+			if (grant.GRANT.order >= 50 && grant.GRANT.order < 1000 && grant.EXPIRES_ON.before(Utilities.date(Utilities.calendar())));
+				grants.add(grant);
+		}
+		return grants;
+	}
+	
+	public Boolean getNumberOfWarns(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		return yml.getBoolean("IsCurrentlyMuted");
+	}
+	
+	public Boolean isCurrentlyMuted(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		return yml.getBoolean("IsCurrentlyMuted");
+	}
+	
+	public Boolean isCurrentlyBanned(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		return yml.getBoolean("IsCurrentlyBanned");
+	}
+	
+	public Boolean isCurrentlyBlacklisted(OfflinePlayer p) {
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		return yml.getBoolean("IsCurrentlyBlacklisted");
+	}
+	
+	public void addGrant(OfflinePlayer p, GrantStruct grant) {
+		/*
+		YamlConfiguration yml = plugin.playerData.getPlayerData(p);
+		int numberOfGrants = yml.getInt("NumberOfGrants");
+		*/
+		return;
+	}
 	
 	/*
 	public void setupPlayer(Player p) {

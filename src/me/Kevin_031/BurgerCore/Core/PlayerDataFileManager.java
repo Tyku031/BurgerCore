@@ -2,6 +2,7 @@ package me.Kevin_031.BurgerCore.Core;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -19,35 +20,27 @@ public class PlayerDataFileManager {
 	/** Manager for getting and setting playerdata. 
 	  * Will create root directory if it doesn't exist. 
 	  * All data will be placed in the plugins/Burgercore/PlayerData folder. */
-	public void RanksSetup() {
+	public PlayerDataFileManager() {
 		file = new File(rootDirectory);
 		if (!file.exists())
 			file.mkdirs();
 	}
 	
+	/** Method to check if a certain player has a player data file */
+	public boolean existsPlayerData(OfflinePlayer p) {
+		File f = new File(rootDirectory + p.getUniqueId() + ".yml");
+		return f.exists();
+	}
+	
 	/** Method to get the .yml file corresponding to a certain player, this contains all player data. */
 	public YamlConfiguration getPlayerData(OfflinePlayer p) {
 		File f = new File(rootDirectory + p.getUniqueId() + ".yml");
-		YamlConfiguration yml;
 		if (f.exists()) {
-			yml = YamlConfiguration.loadConfiguration(f);
+			return YamlConfiguration.loadConfiguration(f);
 		} else {
-			try {
-				f.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
-			yml = defaultPlayerData(p);
-			
-			try {
-				yml.save(f);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			Bukkit.getLogger().severe("Failed to retrieve " + p.getName() + "'s playerdata file, as it does not exist.");
 		}
-		
-		return yml;
+		return null;
 	}
 	
 	/** Method to set or modify a certain player's data */
@@ -65,38 +58,6 @@ public class PlayerDataFileManager {
 			yml.addDefault(key, data);
 			yml.options().copyDefaults();
 			Bukkit.getLogger().warning("Set '" + key + "' to a value in " + p.getName() + "'s playerdata file, but '" + key + "' did not exist yet in that file.");
-		}
-		
-		try {
-			yml.save(f);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return;
-	}
-	
-	/** Method to set or modify a certain player's data. 
-	  * If the player has no data, the player's data will be set to default values. */
-	public void setPlayerDataOrDefault(OfflinePlayer p, String key, Object data) {
-		File f = new File(rootDirectory + p.getUniqueId() + ".yml");
-		YamlConfiguration yml;
-		if (f.exists()) {
-			yml = YamlConfiguration.loadConfiguration(f);
-			if (yml.contains(key))
-				yml.set(key, data);
-			else {
-				yml.addDefault(key, data);
-				yml.options().copyDefaults();
-				Bukkit.getLogger().warning("Set '" + key + "' to a value in " + p.getName() + "'s playerdata file, but '" + key + "' did not exist yet in that file.");
-			}
-		} else {
-			try {
-				f.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-				return;
-			}
-			yml = defaultPlayerData(p);
 		}
 		
 		try {
@@ -160,10 +121,30 @@ public class PlayerDataFileManager {
 		yml.addDefault("LastLogin", null);
 		yml.addDefault("PlayTime", null);
 		yml.addDefault("NumberOfGrants", 0);
-		
-		
+		yml.addDefault("NumberOfActiveGrants", 0);
+		yml.addDefault("NumberOfActiveWarnings", 0);
+		yml.addDefault("IsCurrentlyMuted", false);
+		yml.addDefault("IsCurrentlyBanned", false);
+		yml.addDefault("IsCurrentlyBlacklisted", false);
 		
 		yml.options().copyDefaults(true);
 		return yml;
 	}
+	
+	public Calendar getFirstLogin(OfflinePlayer p) {
+		YamlConfiguration yml = getPlayerData(p);
+		return yml.getObject("FirstLogin", Calendar.class);
+	}
+	
+	public int getNumberOfLogins(OfflinePlayer p) {
+		YamlConfiguration yml = getPlayerData(p);
+		return yml.getInt("NumberOfLogins");
+	}
+	
+	public Calendar getLastLogin(OfflinePlayer p) {
+		YamlConfiguration yml = getPlayerData(p);
+		return yml.getObject("LastLogin", Calendar.class);
+	}
+	
+	// public ? getPlayTime(OfflinePlayer p);
 }

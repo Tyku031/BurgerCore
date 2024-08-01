@@ -18,8 +18,12 @@ public class PunishmentsCommand implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		
-		
+		/*
+		if (!plugin.playerData.existsPlayerData(target) {
+			p.sendMessage("no");
+			return false;
+		}
+		*/
 		return false;
 	}
 }

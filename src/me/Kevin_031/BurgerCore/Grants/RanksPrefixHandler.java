@@ -1,24 +1,22 @@
 package me.Kevin_031.BurgerCore.Grants;
 
-import org.bukkit.entity.Player;
-
-import me.Kevin_031.BurgerCore.Utilities.Utilities;
-
 public class RanksPrefixHandler {
 	
-	String pDEFAULT = "&7[Default] &f";
-	String pVIP = "&a[Vip] &f";
-	String pELITE = "&6[Elite] &f";
-	String pULTRA = "&d&l[Ultra] &r&f";
-	String pLEGEND = "&5&l[Legend] &r&f";
-	String pMEDIA = "&9[Media] &f";
-	String pBUILDER = "&2[Builder] &f";
-	String pTRIALMOD = "&e[Trainee] &f";
-	String pMODERATOR = "&3[Moderator] &f";
-	String pADMIN = "&c[Admin] &f";
-	String pDEVELOPER = "&b[Developer] &f";
-	String pMANAGER = "&c&l[Manager] &r&f";
-	String pOWNER = "&6&l[Owner] &r&f";
+	// This whole class is probably redundant lmao
+	
+	String pDEFAULT = "&7[Default] &f"; // gray
+	String pVIP = "&a[Vip] &f"; // green
+	String pELITE = "&6[Elite] &f"; // gold
+	String pULTRA = "&d&l[Ultra] &r&f"; // light purple | bold
+	String pLEGEND = "&5&l[Legend] &r&f"; // dark purple | bold
+	String pMEDIA = "&9[Media] &f"; // blue
+	String pBUILDER = "&2[Builder] &f"; // dark green
+	String pTRIALMOD = "&e[Trainee] &f"; // yellow
+	String pMODERATOR = "&3[Moderator] &f"; // dark aqua
+	String pADMIN = "&c[Admin] &f"; // red
+	String pDEVELOPER = "&b[Developer] &f"; // aqua
+	String pMANAGER = "&c&l[Manager] &r&f"; // red | bold
+	String pOWNER = "&6&l[Owner] &r&f"; // gold | bold
 	
 	/*
 	public void setupPrefix(Player p) {
