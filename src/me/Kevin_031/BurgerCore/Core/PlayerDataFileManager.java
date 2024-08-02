@@ -110,18 +110,34 @@ public class PlayerDataFileManager {
 		return;
 	}
 	
+	/** Method to save a player's data file, only use if you know the file exists */
+	public void savePlayerData(OfflinePlayer p, YamlConfiguration yml) {
+		File f = new File(rootDirectory + p.getUniqueId() + ".yml");
+		
+		try {
+			yml.save(f);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return;
+	}
+	
 	/** Default playerdata file */
 	private YamlConfiguration defaultPlayerData(OfflinePlayer p) {
 		YamlConfiguration yml = new YamlConfiguration();
 		
-		//general playerdata
+		// general playerdata
 		yml.addDefault("Name", p.getName());
 		yml.addDefault("FirstLogin", Utilities.calendar());
 		yml.addDefault("NumberOfLogins", 0);
 		yml.addDefault("LastLogin", null);
 		yml.addDefault("PlayTime", null);
+		
+		// grants
 		yml.addDefault("NumberOfGrants", 0);
 		yml.addDefault("NumberOfActiveGrants", 0);
+		
+		
 		yml.addDefault("NumberOfActiveWarnings", 0);
 		yml.addDefault("IsCurrentlyMuted", false);
 		yml.addDefault("IsCurrentlyBanned", false);
