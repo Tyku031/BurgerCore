@@ -7,13 +7,13 @@ import java.io.FilenameFilter;
 
 public class FileManager {
 	// Root directory for all data managed by a FileManager.
-	public String RootDirectory = "plugins/BurgerCore/Data/";
+	private String RootDirectory = "plugins/BurgerCore/Data/";
 	// File is the root directory file.
-	public File File;
+	private File File;
 	
 	/** Manager for getting and setting external files. 
 	 * Will create root directory if it doesn't exist. 
-	 * All data will be placed in the plugins/Burgercore/Data folder. */
+	 * All data will be placed in the plugins/Burgercore/Data/ folder. */
 	public FileManager(String rootDirectory) {
 		RootDirectory += rootDirectory.trim();
 		File = new File(RootDirectory);

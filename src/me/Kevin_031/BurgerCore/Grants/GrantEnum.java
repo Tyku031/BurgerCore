@@ -1,25 +1,25 @@
-package me.Kevin_031.BurgerCore.Core;
+package me.Kevin_031.BurgerCore.Grants;
 
 /** Used for defining the type of the grant. */
 public enum GrantEnum {
-	// Development grants (range 0-9)
+	// Development grants (range 0-3)
 	EMPTY("None", 0, "&7"), // gray
 	
-	// Punishments (range 10-49)
-	WARNING("Warning", 15, "&e"), // yellow
-	TEMPMUTE("TempMute", 20, "&6"), // gold
-	PERMMUTE("PermMute", 21, "&6&n"), // gold | underline
-	TEMPBAN("TempBan", 30, "&c"), // red
-	PERMBAN("PermBan", 31, "&c&n"), // red | underline
-	BLACKLIST("Blacklist", 40, "&4&n"), // dark red | underline
+	// Punishments (range 4-9)
+	WARNING("Warning", 4, "&e"), // yellow
+	TEMPMUTE("TempMute", 5, "&6"), // gold
+	PERMMUTE("PermMute", 6, "&6&n"), // gold | underline
+	TEMPBAN("TempBan", 7, "&c"), // red
+	PERMBAN("PermBan", 8, "&c&n"), // red | underline
+	BLACKLIST("Blacklist", 9, "&4&n"), // dark red | underline
 	
-	// Normal ranks (range 50-799)
-	DEFAULT("Default", 55, "&7"), // gray
-	VIP("Vip", 65, "&a"), // green
-	ELITE("Elite", 75, "&6"), // gold
-	ULTRA("Ultra", 85, "&d&l"), // light purple | bold
-	LEGEND("Legend", 95, "&5&l"), // dark purple | bold
-	MEDIA("Media", 150, "&9"), // blue
+	// Normal ranks (range 10-799)
+	DEFAULT("Default", 10, "&7"), // gray
+	VIP("Vip", 20, "&a"), // green
+	ELITE("Elite", 30, "&6"), // gold
+	ULTRA("Ultra", 40, "&d&l"), // light purple | bold
+	LEGEND("Legend", 50, "&5&l"), // dark purple | bold
+	MEDIA("Media", 700, "&9"), // blue
 	
 	// Lower staff ranks (800-899)
 	BUILDER("Builder", 820, "&2"), // dark green

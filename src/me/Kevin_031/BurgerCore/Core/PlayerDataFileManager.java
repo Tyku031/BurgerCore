@@ -3,6 +3,7 @@ package me.Kevin_031.BurgerCore.Core;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -15,11 +16,11 @@ public class PlayerDataFileManager {
 	// Root directory string.
 	private String rootDirectory = "plugins/BurgerCore/PlayerData/";
 	// File is the root directory file.
-	public File file;
+	private File file;
 	
 	/** Manager for getting and setting playerdata. 
 	  * Will create root directory if it doesn't exist. 
-	  * All data will be placed in the plugins/Burgercore/PlayerData folder. */
+	  * All data will be placed in the plugins/Burgercore/PlayerData/ folder. */
 	public PlayerDataFileManager() {
 		file = new File(rootDirectory);
 		if (!file.exists())
@@ -89,7 +90,7 @@ public class PlayerDataFileManager {
 	}
 	
 	/** Method to set a certain player's data to default values. */
-	public void setDefaultPlayerDataFile(OfflinePlayer p) {
+	public void setDefaultPlayerDataFile(OfflinePlayer p, Date date) {
 		File f = new File(rootDirectory + p.getUniqueId() + ".yml");
 		
 		if (!f.exists())
@@ -101,6 +102,7 @@ public class PlayerDataFileManager {
 			}
 		
 		YamlConfiguration yml = defaultPlayerData(p);
+		yml.set("FirstLogin", date);
 
 		try {
 			yml.save(f);
@@ -140,8 +142,11 @@ public class PlayerDataFileManager {
 		
 		yml.addDefault("NumberOfActiveWarnings", 0);
 		yml.addDefault("IsCurrentlyMuted", false);
+		yml.addDefault("ActiveMute", null);
 		yml.addDefault("IsCurrentlyBanned", false);
+		yml.addDefault("ActiveBan", null);
 		yml.addDefault("IsCurrentlyBlacklisted", false);
+		yml.addDefault("ActiveBlacklist", null);
 		
 		yml.options().copyDefaults(true);
 		return yml;
