@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.Kevin_031.BurgerCore.Main;
 import me.Kevin_031.BurgerCore.Grants.GrantEnum;
@@ -91,7 +92,14 @@ public class PlayerJoinListener implements Listener {
 			}
 		}
 		
-		//setup permissions and prefixes
-		p.updateCommands();
+		GrantStruct highestRank = plugin.grants.getHighestActiveRank(p);
+		plugin.setupPermissions(p, highestRank);
+		plugin.setupPrefixes(p, highestRank);
+	}
+	
+	@EventHandler
+	public void onPlayerLeave(PlayerQuitEvent e) {
+		Player p = e.getPlayer();
+		plugin.playerPermissions.remove(p.getUniqueId());
 	}
 }

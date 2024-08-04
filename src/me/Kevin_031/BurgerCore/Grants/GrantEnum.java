@@ -24,7 +24,7 @@ public enum GrantEnum {
 	// Lower staff ranks (800-899)
 	BUILDER("Builder", 820, "&2"), // dark green
 	TRIALMOD("Trainee", 840, "&e"), // yellow
-	MODERATOR("Mod", 850, "&3"), // dark aqua
+	MODERATOR("Moderator", 850, "&3"), // dark aqua
 	
 	// Upper staff ranks (900-999)
 	ADMIN("Admin", 940, "&c"), // red
