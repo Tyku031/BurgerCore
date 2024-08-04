@@ -1,0 +1,173 @@
+Ranks:
+  Owner:
+    permissions:
+      - BurgerCore.Admin
+      - BurgerCore.Moderator
+      - BurgerCore.Trainee
+      - BurgerCore.Builder
+      - BurgerCore.Media
+      - BurgerCore.MutechatBypass
+      - BurgerCore.MoreColors
+      - worldedit.*
+      - bukkit.*
+      - minecraft.*
+      
+  Manager:
+    permissions:
+      - BurgerCore.Admin
+      - BurgerCore.Moderator
+      - BurgerCore.Trainee
+      - BurgerCore.Builder
+      - BurgerCore.Media
+      - BurgerCore.MutechatBypass
+      - BurgerCore.MoreColors
+      - worldedit.*
+      - bukkit.*
+      - minecraft.*
+      
+  Developer:
+    permissions:
+      - BurgerCore.Admin
+      - BurgerCore.Moderator
+      - BurgerCore.Trainee
+      - BurgerCore.Builder
+      - BurgerCore.Media
+      - BurgerCore.MutechatBypass
+      - BurgerCore.MoreColors
+      - worldedit.*
+      - bukkit.*
+      - minecraft.*
+      
+  Admin:
+    permissions:
+      - BurgerCore.Admin
+      - BurgerCore.Moderator
+      - BurgerCore.Trainee
+      - BurgerCore.Builder
+      - BurgerCore.Media
+      - BurgerCore.MutechatBypass
+      - BurgerCore.MoreColors
+      - worldedit.*
+      - bukkit.*
+      - minecraft.*
+       
+  Moderator:
+    permissions:
+      - BurgerCore.Moderator
+      - BurgerCore.Trainee
+      - BurgerCore.Builder
+      - BurgerCore.Media
+      - BurgerCore.MutechatBypass
+      - BurgerCore.MoreColors
+      - worldedit.*
+      - minecraft.nbt.copy
+      - minecraft.nbt.place
+      - minecraft.autocraft
+      - minecraft.debugstick
+      - minecraft.admin.command_feedback
+      - minecraft.command.selector
+      - minecraft.command.advancement
+      - minecraft.command.ban
+      - minecraft.command.ban-ip
+      - minecraft.command.banlist
+      - minecraft.command.clear
+      - minecraft.command.effect
+      - minecraft.command.enchant
+      - minecraft.command.gamemode
+      - minecraft.command.give
+      - minecraft.command.kick
+      - minecraft.command.kill
+      - minecraft.command.list
+      - minecraft.command.pardon
+      - minecraft.command.pardon-ip
+      - minecraft.command.playsound
+      - minecraft.command.say
+      - minecraft.command.scoreboard
+      - minecraft.command.setblock
+      - minecraft.command.fill
+      - minecraft.command.spawnpoint
+      - minecraft.command.spreadplayers
+      - minecraft.command.summon
+      - minecraft.command.tellraw
+      - minecraft.command.testfor
+      - minecraft.command.testforblock
+      - minecraft.command.time
+      - minecraft.command.teleport
+      - minecraft.command.weather
+      - minecraft.command.xp
+      
+  Trainee:
+    permissions:
+      - BurgerCore.Trainee
+      - BurgerCore.Media
+      - BurgerCore.MutechatBypass
+      - BurgerCore.MoreColors
+      - minecraft.nbt.copy
+      - minecraft.nbt.place
+      - minecraft.autocraft
+      - minecraft.command.gamemode
+      - minecraft.command.kick
+      - minecraft.command.list
+      - minecraft.command.setblock
+      - minecraft.command.teleport
+      - -bukkit.command.plugins
+      
+  Builder:
+    permissions:
+      - BurgerCore.Builder
+      - BurgerCore.Media
+      - BurgerCore.MutechatBypass
+      - BurgerCore.MoreColors
+      - worldedit.*
+      - minecraft.nbt.copy
+      - minecraft.nbt.place
+      - minecraft.autocraft
+      - minecraft.debugstick
+      - minecraft.command.clear
+      - minecraft.command.gamemode
+      - minecraft.command.give
+      - minecraft.command.setblock
+      - minecraft.command.fill
+      - minecraft.command.spawnpoint
+      - minecraft.command.summon
+      - minecraft.command.testfor
+      - minecraft.command.testforblock
+      - minecraft.command.teleport
+      - -bukkit.command.plugins
+      
+  Media:
+    permissions:
+      - BurgerCore.Media
+      - BurgerCore.MoreColors
+      - minecraft.autocraft
+      - -bukkit.command.plugins
+      
+  Legend:
+    permissions:
+      - BurgerCore.MoreColors
+      - minecraft.autocraft
+      - -bukkit.command.plugins
+      
+  Ultra:
+    permissions:
+      - BurgerCore.MoreColors
+      - minecraft.autocraft
+      - -bukkit.command.plugins
+      
+  Elite:
+    permissions:
+      - BurgerCore.MoreColors
+      - minecraft.autocraft
+      - -bukkit.command.plugins
+      
+  Vip:
+    permissions:
+      - BurgerCore.MoreColors
+      - minecraft.autocraft
+      - -bukkit.command.plugins
+      
+  Default:
+    permissions:
+      - minecraft.autocraft
+      - -bukkit.command.plugins
+      
