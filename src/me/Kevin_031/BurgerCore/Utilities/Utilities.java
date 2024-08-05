@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 
 import org.bukkit.ChatColor;
 
-public class Utilities {
+public abstract class Utilities {
 
 	//chatcolor
 	public static String chat(String s) {

@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import me.Kevin_031.BurgerCore.Main;
 import me.Kevin_031.BurgerCore.Grants.GrantEnum;
 import me.Kevin_031.BurgerCore.Grants.GrantStruct;
+import me.Kevin_031.BurgerCore.Utilities.OfflinePlayerMap;
 import me.Kevin_031.BurgerCore.Utilities.Utilities;
 
 public class PlayerJoinListener implements Listener {
@@ -35,6 +36,7 @@ public class PlayerJoinListener implements Listener {
 		if (!p.hasPlayedBefore()) {
 			plugin.playerData.setDefaultPlayerDataFile(p, Utilities.date(Utilities.calendar()));
 			plugin.grants.addGrant(p, new GrantStruct(GrantEnum.DEFAULT, null, "Default Rank", Utilities.date(Utilities.calendar()), null, true));
+			OfflinePlayerMap.getInstance().putInMap(p);
 			return;
 		}
 		

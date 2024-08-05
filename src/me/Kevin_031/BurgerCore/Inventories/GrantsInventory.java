@@ -8,11 +8,11 @@ import org.bukkit.inventory.Inventory;
 
 import me.Kevin_031.BurgerCore.Main;
 
-public class GrantInventory implements Listener {
+public class GrantsInventory implements Listener {
 
 	Main plugin;
 	
-	public GrantInventory(Main plugin) {
+	public GrantsInventory(Main plugin) {
 		this.plugin = plugin;
 		Bukkit.getPluginManager().registerEvents(this, plugin);
 	}
