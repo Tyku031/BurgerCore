@@ -9,3 +9,18 @@ commands:
   currenttime:
     description: Returns the current time.
     aliases: [ct]
+  grant:
+    description: Opens an inventory to give a grant to a player. (No punishments can be granted this way.)
+  grants:
+    description: Opens an inventory to see all of a player's grants.
+  history:
+    description: Opens an inventory to see the grant history of a player.
+    aliases: [hist]
+  playerdata:
+    description: Opens an inventory to see a player's stats.
+    aliases: [pd, pdata]
+  punishments:
+    description: Opens an inventory to see a player's punishments.
+    aliases: [pm]
+  ranks:
+    description: Opens an inventory to see a player's ranks.

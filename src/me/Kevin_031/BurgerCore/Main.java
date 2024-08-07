@@ -9,8 +9,13 @@ import org.bukkit.permissions.PermissionAttachment;
 
 import me.Kevin_031.BurgerCore.Core.PlayerDataFileManager;
 import me.Kevin_031.BurgerCore.CoreCommands.CurrentTimeCommand;
+import me.Kevin_031.BurgerCore.CoreCommands.GrantCommand;
+import me.Kevin_031.BurgerCore.CoreCommands.GrantsCommand;
+import me.Kevin_031.BurgerCore.CoreCommands.HistoryCommand;
+import me.Kevin_031.BurgerCore.CoreCommands.PlayerDataCommand;
+import me.Kevin_031.BurgerCore.CoreCommands.PunishmentsCommand;
+import me.Kevin_031.BurgerCore.CoreCommands.RanksCommand;
 import me.Kevin_031.BurgerCore.Grants.GrantStruct;
-import me.Kevin_031.BurgerCore.Grants.GrantsManager;
 import me.Kevin_031.BurgerCore.Listeners.PlayerJoinListener;
 import me.Kevin_031.BurgerCore.Utilities.Utilities;
 
@@ -18,7 +23,6 @@ public class Main extends JavaPlugin {
 
 	// Managers:
 	public PlayerDataFileManager playerData;
-	public GrantsManager grants;
 	public HashMap<UUID, PermissionAttachment> playerPermissions = new HashMap<UUID, PermissionAttachment>();
 	
 	@Override
@@ -27,14 +31,21 @@ public class Main extends JavaPlugin {
 		saveDefaultConfig();
 		
 		// Managers:
-		playerData = new PlayerDataFileManager();
-		grants = new GrantsManager(this);
+		playerData = new PlayerDataFileManager(this);
 		
 		// Listeners:
 		new PlayerJoinListener(this);
 		
 		// Commands:
+		new GrantCommand(this);
+		new GrantsCommand(this);
+		new HistoryCommand(this);
+		new PlayerDataCommand(this);
+		new PunishmentsCommand(this);
+		new RanksCommand(this);
+		
 		new CurrentTimeCommand(this);
+		
 		
 		saveConfig();
 	}
@@ -42,7 +53,6 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		playerData = null;
-		grants = null;
 		playerPermissions.clear();
 	}
 	
