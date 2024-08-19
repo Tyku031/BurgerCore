@@ -7,14 +7,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 
+import me.Kevin_031.BurgerCore.Commands.CurrentTimeCommand;
+import me.Kevin_031.BurgerCore.Commands.GrantCommand;
+import me.Kevin_031.BurgerCore.Commands.GrantsCommand;
+import me.Kevin_031.BurgerCore.Commands.HistoryCommand;
+import me.Kevin_031.BurgerCore.Commands.PlayerDataCommand;
+import me.Kevin_031.BurgerCore.Commands.PunishmentsCommand;
+import me.Kevin_031.BurgerCore.Commands.RanksCommand;
 import me.Kevin_031.BurgerCore.Core.PlayerDataFileManager;
-import me.Kevin_031.BurgerCore.CoreCommands.CurrentTimeCommand;
-import me.Kevin_031.BurgerCore.CoreCommands.GrantCommand;
-import me.Kevin_031.BurgerCore.CoreCommands.GrantsCommand;
-import me.Kevin_031.BurgerCore.CoreCommands.HistoryCommand;
-import me.Kevin_031.BurgerCore.CoreCommands.PlayerDataCommand;
-import me.Kevin_031.BurgerCore.CoreCommands.PunishmentsCommand;
-import me.Kevin_031.BurgerCore.CoreCommands.RanksCommand;
 import me.Kevin_031.BurgerCore.Grants.GrantStruct;
 import me.Kevin_031.BurgerCore.Listeners.PlayerJoinListener;
 import me.Kevin_031.BurgerCore.Utilities.Utilities;
@@ -45,7 +45,6 @@ public class Main extends JavaPlugin {
 		new RanksCommand(this);
 		
 		new CurrentTimeCommand(this);
-		
 		
 		saveConfig();
 	}

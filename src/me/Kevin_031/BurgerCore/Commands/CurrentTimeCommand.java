@@ -1,4 +1,4 @@
-package me.Kevin_031.BurgerCore.CoreCommands;
+package me.Kevin_031.BurgerCore.Commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

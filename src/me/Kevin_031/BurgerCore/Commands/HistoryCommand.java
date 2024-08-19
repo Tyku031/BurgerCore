@@ -1,4 +1,4 @@
-package me.Kevin_031.BurgerCore.CoreCommands;
+package me.Kevin_031.BurgerCore.Commands;
 
 import java.util.UUID;
 
@@ -9,17 +9,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.Kevin_031.BurgerCore.Main;
-import me.Kevin_031.BurgerCore.Inventories.GrantsInventory;
+import me.Kevin_031.BurgerCore.Inventories.HistoryInventory;
 import me.Kevin_031.BurgerCore.Utilities.OfflinePlayerMap;
 import me.Kevin_031.BurgerCore.Utilities.Utilities;
 
-public class GrantsCommand implements CommandExecutor {
+public class HistoryCommand implements CommandExecutor {
 
 	Main plugin;
 	
-	public GrantsCommand(Main plugin) {
+	public HistoryCommand(Main plugin) {
 		this.plugin = plugin;
-		plugin.getCommand("grants").setExecutor(this);
+		plugin.getCommand("history").setExecutor(this);
 	}
 	
 	@Override
@@ -34,7 +34,8 @@ public class GrantsCommand implements CommandExecutor {
 		UUID target = OfflinePlayerMap.getInstance().getUUID(args[0]);
 		if (target == null)
 			p.sendMessage(Utilities.chat("&cThis player either doesn't exist or has never played on this server"));
-		p.openInventory((new GrantsInventory(plugin)).getInventory(p, Bukkit.getOfflinePlayer(target)));
+		p.openInventory((new HistoryInventory(plugin)).getInventory(p, Bukkit.getOfflinePlayer(target)));
 		return false;
 	}
 }
+

@@ -1,4 +1,4 @@
-package me.Kevin_031.BurgerCore.CoreCommands;
+package me.Kevin_031.BurgerCore.Commands;
 
 import java.util.UUID;
 
@@ -9,17 +9,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.Kevin_031.BurgerCore.Main;
-import me.Kevin_031.BurgerCore.Inventories.RanksInventory;
+import me.Kevin_031.BurgerCore.Inventories.PunishmentsInventory;
 import me.Kevin_031.BurgerCore.Utilities.OfflinePlayerMap;
 import me.Kevin_031.BurgerCore.Utilities.Utilities;
 
-public class RanksCommand implements CommandExecutor {
+public class PunishmentsCommand implements CommandExecutor {
 
 	Main plugin;
 	
-	public RanksCommand(Main plugin) {
+	public PunishmentsCommand(Main plugin) {
 		this.plugin = plugin;
-		plugin.getCommand("ranks").setExecutor(this);
+		plugin.getCommand("punishments").setExecutor(this);
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class RanksCommand implements CommandExecutor {
 		UUID target = OfflinePlayerMap.getInstance().getUUID(args[0]);
 		if (target == null)
 			p.sendMessage(Utilities.chat("&cThis player either doesn't exist or has never played on this server"));
-		p.openInventory((new RanksInventory(plugin)).getInventory(p, Bukkit.getOfflinePlayer(target)));
+		p.openInventory((new PunishmentsInventory(plugin)).getInventory(p, Bukkit.getOfflinePlayer(target)));
 		return false;
 	}
 }
