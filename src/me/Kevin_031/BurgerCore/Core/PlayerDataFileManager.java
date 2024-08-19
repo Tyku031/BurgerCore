@@ -101,13 +101,14 @@ public class PlayerDataFileManager {
 		yml.addDefault("FirstLogin", Utilities.calendar());
 		yml.addDefault("NumberOfLogins", 0);
 		yml.addDefault("LastLogin", null);
+		yml.addDefault("SecondToLastLogin", null);
 		yml.addDefault("PlayTime", null);
 		
 		// grants
 		yml.addDefault("NumberOfGrants", 0);
 		yml.addDefault("NumberOfActiveGrants", 0);
 		
-		
+		// punishments
 		yml.addDefault("NumberOfActiveWarnings", 0);
 		yml.addDefault("IsCurrentlyMuted", false);
 		yml.addDefault("ActiveMute", null);
@@ -132,7 +133,11 @@ public class PlayerDataFileManager {
 		return yml.getObject("LastLogin", Calendar.class);
 	}
 	
-	// public ? getPlayTime(YamlConfiguration yml) { }
+	public Calendar getSecondToLastLogin(YamlConfiguration yml) {
+		return yml.getObject("SecondToLastLogin", Calendar.class);
+	}
+	
+	//TODO: public ? getPlayTime(YamlConfiguration yml) { }
 	
 	public int getNumberOfGrants(YamlConfiguration yml) {
 		return yml.getInt("NumberOfGrants");

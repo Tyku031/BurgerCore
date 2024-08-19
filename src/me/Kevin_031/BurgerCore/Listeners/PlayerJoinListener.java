@@ -84,6 +84,7 @@ public class PlayerJoinListener implements Listener {
 		if (!yml.getString("Name").equals(p.getName()))
 			yml.set("Name", p.getName());
 		yml.set("NumberOfLogins", yml.getInt("NumberOfLogins") + 1);
+		yml.set("SecondToLastLogin", plugin.playerData.getLastLogin(yml));
 		yml.set("LastLogin", Utilities.date(Utilities.calendar()));
 		
 		ArrayList<GrantStruct> ranks = plugin.playerData.getAllActiveRanks(yml);
