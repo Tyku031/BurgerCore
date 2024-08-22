@@ -1,20 +1,17 @@
 package me.Kevin_031.BurgerCore.Inventories;
 
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 
 import me.Kevin_031.BurgerCore.Main;
 
-public class GrantsInventory implements Listener {
+public class GrantsInventory {
 
 	Main plugin;
 	
 	public GrantsInventory(Main plugin) {
 		this.plugin = plugin;
-		Bukkit.getPluginManager().registerEvents(this, plugin);
 	}
 	
 	public Inventory getInventory(Player p, OfflinePlayer target) {

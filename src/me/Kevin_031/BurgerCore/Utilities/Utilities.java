@@ -10,8 +10,12 @@ import org.bukkit.ChatColor;
 public abstract class Utilities {
 
 	//chatcolor
-	public static String chat(String s) {
+	public static String colorChat(String s) {
 		return ChatColor.translateAlternateColorCodes('&', s);
+	}
+	
+	public static String stripColor(String s) {
+		return ChatColor.stripColor(s);
 	}
 	
 	//time

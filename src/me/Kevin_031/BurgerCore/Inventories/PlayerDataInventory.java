@@ -7,7 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -17,30 +16,29 @@ import org.bukkit.inventory.meta.SkullMeta;
 import me.Kevin_031.BurgerCore.Main;
 import me.Kevin_031.BurgerCore.Utilities.Utilities;
 
-public class PlayerDataInventory implements Listener {
+public class PlayerDataInventory {
 
 	Main plugin;
 	
 	public PlayerDataInventory(Main plugin) {
 		this.plugin = plugin;
-		Bukkit.getPluginManager().registerEvents(this, plugin);
 	}
 	
 	public Inventory getInventory(Player p, OfflinePlayer target) {
 		YamlConfiguration yml = plugin.playerData.getPlayerData(target);
-		Inventory inv = Bukkit.createInventory(p, 27, Utilities.chat("&b&l" + target.getName() + "'s data:"));
+		Inventory inv = Bukkit.createInventory(p, 27, Utilities.colorChat("&b&l" + target.getName() + "'s data:"));
 		
 		//skull (slot 4)
 		ItemStack skull = new ItemStack(Material.PLAYER_HEAD);
 		SkullMeta skullmeta = (SkullMeta) skull.getItemMeta();
-		skullmeta.setDisplayName(Utilities.chat("&3" + target.getName()));
+		skullmeta.setDisplayName(Utilities.colorChat("&3" + target.getName()));
 		skullmeta.setOwningPlayer(target);
 		skullmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		ArrayList<String> ranklore = new ArrayList<String>();
-		ranklore.add(Utilities.chat("&9First login: &6" + Utilities.time(Utilities.date(plugin.playerData.getFirstLogin(yml)))));
-		ranklore.add(Utilities.chat("&9Last login: &6" + Utilities.time(Utilities.date(plugin.playerData.getLastLogin(yml)))));
-		ranklore.add(Utilities.chat("&9Second to last login: &6" + Utilities.time(Utilities.date(plugin.playerData.getSecondToLastLogin(yml)))));
-		ranklore.add(Utilities.chat("&9Number of logins: &6" + plugin.playerData.getNumberOfLogins(yml)));
+		ranklore.add(Utilities.colorChat("&9First login: &6" + Utilities.time(Utilities.date(plugin.playerData.getFirstLogin(yml)))));
+		ranklore.add(Utilities.colorChat("&9Last login: &6" + Utilities.time(Utilities.date(plugin.playerData.getLastLogin(yml)))));
+		ranklore.add(Utilities.colorChat("&9Second to last login: &6" + Utilities.time(Utilities.date(plugin.playerData.getSecondToLastLogin(yml)))));
+		ranklore.add(Utilities.colorChat("&9Number of logins: &6" + plugin.playerData.getNumberOfLogins(yml)));
 		//TODO: ranklore.add(Utilities.chat("&9Playtime: &6" + plugin.playerData.getPlayTime(yml)));
 		skullmeta.setLore(ranklore);
 		ranklore.clear();
@@ -50,7 +48,7 @@ public class PlayerDataInventory implements Listener {
 		//grants (slot 18)
 		ItemStack grants = new ItemStack(Material.CYAN_CONCRETE);
 		ItemMeta grantsmeta = grants.getItemMeta();
-		grantsmeta.setDisplayName(Utilities.chat("&3Go to Grants"));
+		grantsmeta.setDisplayName(Utilities.colorChat("&3Go to Grants"));
 		grantsmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		grants.setItemMeta(grantsmeta);
 		inv.setItem(18, grants);
@@ -58,7 +56,7 @@ public class PlayerDataInventory implements Listener {
 		//history (slot 20)
 		ItemStack history = new ItemStack(Material.BLUE_CONCRETE);
 		ItemMeta historymeta = history.getItemMeta();
-		historymeta.setDisplayName(Utilities.chat("&9Go to History"));
+		historymeta.setDisplayName(Utilities.colorChat("&9Go to History"));
 		historymeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		history.setItemMeta(historymeta);
 		inv.setItem(20, history);
@@ -66,7 +64,7 @@ public class PlayerDataInventory implements Listener {
 		//ranks (slot 24)
 		ItemStack ranks = new ItemStack(Material.PURPLE_CONCRETE);
 		ItemMeta ranksmeta = ranks.getItemMeta();
-		ranksmeta.setDisplayName(Utilities.chat("&5Go to Ranks"));
+		ranksmeta.setDisplayName(Utilities.colorChat("&5Go to Ranks"));
 		ranksmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		ranks.setItemMeta(ranksmeta);
 		inv.setItem(24, ranks);
@@ -74,13 +72,11 @@ public class PlayerDataInventory implements Listener {
 		//punishments (slot 26)
 		ItemStack punishments = new ItemStack(Material.RED_CONCRETE);
 		ItemMeta punishmentsmeta = punishments.getItemMeta();
-		punishmentsmeta.setDisplayName(Utilities.chat("&cGo to Punishments"));
+		punishmentsmeta.setDisplayName(Utilities.colorChat("&cGo to Punishments"));
 		punishmentsmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		punishments.setItemMeta(punishmentsmeta);
 		inv.setItem(26, punishments);
 		
 		return inv; //playerdata inv color is lime (concrete)
 	}
-	
-	//TODO: Go to {inv} listeners
 }

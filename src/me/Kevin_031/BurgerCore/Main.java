@@ -16,6 +16,13 @@ import me.Kevin_031.BurgerCore.Commands.PunishmentsCommand;
 import me.Kevin_031.BurgerCore.Commands.RanksCommand;
 import me.Kevin_031.BurgerCore.Core.PlayerDataFileManager;
 import me.Kevin_031.BurgerCore.Grants.GrantStruct;
+import me.Kevin_031.BurgerCore.Inventories.GrantInventory;
+import me.Kevin_031.BurgerCore.Inventories.GrantsInventory;
+import me.Kevin_031.BurgerCore.Inventories.HistoryInventory;
+import me.Kevin_031.BurgerCore.Inventories.PlayerDataInventory;
+import me.Kevin_031.BurgerCore.Inventories.PunishmentsInventory;
+import me.Kevin_031.BurgerCore.Inventories.RanksInventory;
+import me.Kevin_031.BurgerCore.Listeners.OnInventoryClickListener;
 import me.Kevin_031.BurgerCore.Listeners.PlayerJoinListener;
 import me.Kevin_031.BurgerCore.Utilities.Utilities;
 
@@ -24,6 +31,14 @@ public class Main extends JavaPlugin {
 	// Managers:
 	public PlayerDataFileManager playerData;
 	public HashMap<UUID, PermissionAttachment> playerPermissions = new HashMap<UUID, PermissionAttachment>();
+	
+	// Inventories:
+	public GrantInventory gi;
+	public GrantsInventory gsi;
+	public HistoryInventory hi;
+	public PlayerDataInventory pdi;
+	public PunishmentsInventory pi;
+	public RanksInventory ri;
 	
 	@Override
 	public void onEnable() {
@@ -35,6 +50,7 @@ public class Main extends JavaPlugin {
 		
 		// Listeners:
 		new PlayerJoinListener(this);
+		new OnInventoryClickListener(this);
 		
 		// Commands:
 		new GrantCommand(this);
@@ -45,6 +61,14 @@ public class Main extends JavaPlugin {
 		new RanksCommand(this);
 		
 		new CurrentTimeCommand(this);
+		
+		// Inventories:
+		gi = new GrantInventory(this);
+		gsi = new GrantsInventory(this);
+		hi = new HistoryInventory(this);
+		pdi = new PlayerDataInventory(this);
+		pi = new PunishmentsInventory(this);
+		ri = new RanksInventory(this);
 		
 		saveConfig();
 	}
@@ -64,7 +88,7 @@ public class Main extends JavaPlugin {
 	}
 	
 	public void setupPrefixes(Player p, GrantStruct highestRank) {
-		p.setDisplayName(Utilities.chat(highestRank.GRANT.color + "[" + highestRank.GRANT.name + "] &r&f" + p.getName()));
-		p.setPlayerListName(Utilities.chat(highestRank.GRANT.color + "[" + highestRank.GRANT.name + "] " + p.getName()));
+		p.setDisplayName(Utilities.colorChat(highestRank.GRANT.color + "[" + highestRank.GRANT.name + "] &r&f" + p.getName()));
+		p.setPlayerListName(Utilities.colorChat(highestRank.GRANT.color + "[" + highestRank.GRANT.name + "] " + p.getName()));
 	}
 }

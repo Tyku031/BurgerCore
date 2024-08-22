@@ -37,6 +37,10 @@ public class OfflinePlayerMap {
 		return offlinePlayerList.get(offlinePlayer);
 	}
 	
+	public OfflinePlayer getOfflinePlayer(String offlinePlayer) {
+		return Bukkit.getOfflinePlayer(offlinePlayerList.get(offlinePlayer));
+	}
+	
 	public int getSize() {
 		return offlinePlayerList.size();
 	}
